@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= cost.id   %> and <%= cost.description%></title>
+</head>
+<body>
+<h1>All the cost details</h1>
+<ul>
+    <li>user id : <%= cost.user_id%></li>
+    <li>year :<%= cost.year%></li>
+    <li>month :<a href="/costs?month=<%=cost.month%>"><%=cost.month%></a></li>
+    <li>day :<%= cost.day%></li>
+    <li>description :<%= cost.description%></li>
+    <li>category :<%= cost.category%></li>
+    <li>sum :<%= cost.sum%></li>
+
+</ul>
+<a href="/costs">Back to all costs</a>
+<a href="/costs/<%=cost._id%>/edit">Edit cost</a>
+<form action="/costs/<%=cost._id%>/?_method=DELETE" method="POST">
+    <button>Delete</button>
+</form>
+
+</body>
+</html>

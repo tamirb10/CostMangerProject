@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This is edit cost page </title>
+</head>
+<body>
+
+<h1>This is edit cost page</h1>
+<form action="/costs/<%=cost._id%>?_method=PUT" method="POST">
+    <label for="user_id">user_id:</label>
+    <input type="String" name="user_id" id="user_id" placeholder="cost user_id" value="<%= cost.user_id%>">
+    <label for="year">year:</label>
+    <input type="text" name="year" id="year" placeholder="cost year" value="<%= cost.year%>">
+    <label for="month">month:</label>
+    <input type="Number" name="month" id="month" placeholder="cost month" value="<%= cost.month%>">
+    <label for="day">day:</label>
+    <input type="Number" name="day" id="day" placeholder="cost day" value="<%= cost.day%>">
+    <label for="description">description:</label>
+    <input type="String" name="description" id="description" placeholder="cost description" value="<%= cost.description%>">
+    <label for="category">Select Category</label>
+    <select name="category" id="category">
+        <% for(let category of categories){ %>
+        <option value="<%=category%>" <%=cost.category === category ? 'selected': '' %>><%=category%></option>
+        <% } %>
+    </select>
+    <label for="sum">sum:</label>
+    <input type="Number" name="sum" id="sum" placeholder="cost sum" value="<%= cost.sum%>">
+    <button>Edit cost</button>
+
+    <a href="/costs">Back to all costs</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a new cost </title>
+</head>
+<body>
+
+<h1>Add a new cost</h1>
+<form id="costForm" action="/costs/addcost" method="POST">
+    <label for="user_id">user_id:</label>
+    <input type="String" name="user_id" id="user_id" placeholder="cost user_id">
+    <label for="year">year:</label>
+    <input type="text" name="year" id="year" placeholder="cost year">
+    <label for="month">month:</label>
+    <input type="Number" name="month" id="month" placeholder="cost month">
+    <label for="day">day:</label>
+    <input type="Number" name="day" id="day" placeholder="cost day">
+    <label for="description">description:</label>
+    <input type="String" name="description" id="description" placeholder="cost description">
+
+    <label for="category">Select Category</label>
+    <input type="text" list="categoryList" name="category" id="category" />
+
+    <datalist id="categoryList">
+        <% for(let category of categories){ %>
+        <option value="<%=category%>"></option>
+        <% } %>
+    </datalist>
+    <label for="sum">sum:</label>
+    <input type="Number" name="sum" id="sum" placeholder="cost sum">
+<button>Add cost</button>
+
+    <a href="/costs">Back to all costs</a>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Handle form submission
+        $("#costForm").submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            var formData = $(this).serialize();
+
+            // Make AJAX request
+            $.ajax({
+                url: $(this).attr("action"),
+                method: $(this).attr("method"),
+                data: formData,
+                success: function() {
+                    // Handle successful response
+                    alert("Cost added successfully!");
+                    // You can also redirect to another page if needed:
+                    // window.location.href = "/costs";
+                },
+                error: function(error) {
+                    alert("An error occurred: " + error.responseText);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

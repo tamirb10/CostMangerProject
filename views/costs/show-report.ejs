@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>All the costs</title>
+</head>
+<body>
+<h1>User <%=user_id%> these are your expenses to year <%=year%> and month <%=month%> </h1>
+<% const result = JSON.parse(reported); %>
+
+<ul>
+    <% for (let category of categories) { %>
+        <li><strong><%= category %>:</strong></li>
+        <% for (let cost of result[category]) { %>
+            <li>Day: <%= cost.day %>, Description: <%= cost.description %>, Sum: <%= cost.sum %></li>
+        <% } %>
+    <% } %>
+</ul>
+
+
+
+<a href="/costs/addcost">Add cost</a>
+<a href="/costs/report">Report</a>
+<a href="/costs">Back to all costs</a>
+</body>
+</html>
